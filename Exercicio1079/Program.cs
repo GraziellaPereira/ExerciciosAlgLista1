@@ -1,54 +1,31 @@
 ﻿using System;
-using System.Collections.Generic; // Biblioteca utilizada para trabalhar com listas
+using System.Globalization;
 
-namespace Exercicio1074
+namespace Exercicio1079
 {
     internal class Program
     {
         static void Main()
         {
             int n;
-            double x;
 
-
-            Console.WriteLine("Digite o número de casos de testes: ");
+            Console.WriteLine("Digite o número de casos de testes que serão realizados: ");
             n = int.Parse(Console.ReadLine());
-            List<double> numeros = new List<double>();
-            List<double> media = new List<double>();
 
-                for (int i = 1; i <+ n; i++)
+            double[] casosTeste = new double[3];
+            double mediaPonderada;
+            for (int i = 1; i< n; i++) {
+                Console.WriteLine($"Digite os 3 números do caso de teste de número {i} ");
+
+                for (int j = 0; j < 3; j++)
                 {
-                Console.WriteLine($"Digite os 3 números para o caso de teste de número {i}:");
-                numeros.Add(double.Parse(Console.ReadLine()));
-                numeros.Add(double.Parse(Console.ReadLine()));
-                numeros.Add(double.Parse(Console.ReadLine()));
-            }
+                    casosTeste[j] = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
 
-                foreach (double num in numeros)
-                {
-                    x = num;
-
-                    if (x == 0)
-                    {
-                        resultados.Add("NULL");
-                    }
-                    else
-                    {
-                        validaPar = (x % 2 == 0) ? "EVEN" : "ODD";
-                        validaPositivo = (x > 0) ? "POSITIVE" : "NEGATIVE";
-
-                        resultados.Add($"{validaPar} {validaPositivo}");
-                    }
                 }
-
-                Console.WriteLine("Resultados:");
-                foreach (string resultado in resultados)
-                {
-                    Console.WriteLine(resultado);
-                }
-
-                Console.ReadKey();
+                mediaPonderada = ((casosTeste[0] * 2) + (casosTeste[1] * 3) + (casosTeste[2] * 5)) / 10;
+                Console.WriteLine($"Média ponderada: {mediaPonderada:F1}");
             }
+            Console.ReadKey();
         }
     }
 }
